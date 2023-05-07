@@ -1,0 +1,22 @@
+name: Daily scrape
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run scrape script
+        run: |
+          python scrape.py
+      - name: Commit changes
+        run: |
+          git config --global user.email "josh@joshelliott.me.com"
+          git config --global user.name "Josh"
+          git add --all
+          git commit -m "Add scraped data for $(date +'%Y-%m-%d')"
+          git push
