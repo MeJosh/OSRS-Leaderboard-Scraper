@@ -28,7 +28,7 @@ jobs:
           author_email: "josh@joshelliott.me"
           message: "Updated player data"
           add: "data/*"
-      - name: Push changes
-        uses: ad-m/github-push-action@v0.6.0
+      - name: Commit & Push changes
+        uses: actions-js/push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
