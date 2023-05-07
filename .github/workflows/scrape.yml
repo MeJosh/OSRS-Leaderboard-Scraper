@@ -21,3 +21,14 @@ jobs:
           pip install -r requirements.txt
       - name: Run scrape.py
         run: python scrape.py
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: "Josh"
+          author_email: "josh@joshelliott.me"
+          message: "Updated player data"
+          add: "data/*"
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
