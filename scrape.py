@@ -29,5 +29,9 @@ for filename in files:
     output_filename = f"{dirname}_{current_date}.txt"
     output_path = os.path.join(data_dir, output_filename)
     response = requests.get(url)
-    with open(output_path, 'wb') as f:
-        f.write(response.content)
+    if response.status_code == 200:
+        with open(output_path, 'wb') as f:
+            f.write(response.content)
+        print(f"Successfully scraped data for {dirname}")
+    else:
+        print(f"Failed to scrape data for {dirname}. Status code: {response.status_code}")
